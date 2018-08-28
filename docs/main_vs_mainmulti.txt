@@ -1,0 +1,31 @@
+After completing the first book.
+
+The process has been parallelized with concurrent.futures module.
+
+This world:
+    world = HitableList(list_of_hitables=[
+        Sphere(center=Vector3(0, 0, -1), radius=0.5, material=Lambertian(albedo=Vector3(0.8, 0.3, 0.3))),
+        Sphere(center=Vector3(0, 0, 0), radius=0.5, material=Lambertian(albedo=Vector3(0.1, 0.3, 0.8))),
+        Sphere(center=Vector3(0, -100.5, 0), radius=100, material=Lambertian(albedo=Vector3(0.8, 0.8, 0.0))),
+        Sphere(center=Vector3(1, 0, 0), radius=0.5, material=Metal(albedo=Vector3(0.8, 0.6, 0.2), fuzz=0.3)),
+        Sphere(center=Vector3(-1, 0, 0), radius=0.5, material=Metal(albedo=Vector3(0.2, 0.8, 0.3), fuzz=1.0)),
+        Sphere(center=Vector3(0, 0, 1), radius=0.5, material=Dielectric(refraction_index=1.5))
+    ])
+
+This camera:
+lookfrom = Vector3(4.0, 1.5, 1.2)
+lookat = Vector3(0.0, 0.5, 0.0)
+cam = Camera(lookfrom=lookfrom, lookat=lookat, vectorup=Vector3(0.0, 1.0, 0.0),
+             vfov=40.0, aspect=float(width) / float(height), aperture=2.0, focus_dist=(lookfrom - lookat).length())
+
+Image Size 854x480 50 samples
+
+Without concurrency:
+
+With concurrency:
+
+max_workers, chunk_width, chuck_height, time
+20 50 50
+
+3 150 150
+3 300 300
