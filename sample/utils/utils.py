@@ -46,3 +46,18 @@ class Utils:
             Sphere(Vector3(4, 1, 0), 1.0, Metal(Vector3(0.7, 0.6, 0.5), 0.0))
         )
         return world
+
+    # @staticmethod
+    # def bsic_scene():
+    #     list_of_hitables = [
+    #         Sphere(center=Vector3(0.0, -100.5, 0.0), radius=100,
+    #                material=Lambertian(albedo=Vector3(1.0, 1.0, 1.0), texture=colors_texture)),
+    #         Sphere(center=Vector3(0, 0, 2), radius=0.5, material=Lambertian(albedo=Vector3(0.8, 0.8, 0.3)),
+    #                center_destiny=Vector3(0, 0, 2.5), time0=0, time1=1),
+    #         Sphere(center=Vector3(1.0, 0.0, 0.0), radius=0.5, material=Lambertian(albedo=Vector3(0.9, 0.3, 0.8))),
+    #         Sphere(center=Vector3(0, 0, 0), radius=0.5, material=Lambertian(albedo=Vector3(0.1, 0.3, 0.8))),
+    #         Sphere(center=Vector3(1, 0, 0), radius=0.5, material=Metal(albedo=Vector3(0.8, 0.6, 0.2), fuzz=0.3)),
+    #         Sphere(center=Vector3(-1, 0, 0), radius=0.5, material=Metal(albedo=Vector3(0.2, 0.8, 0.3), fuzz=1.0)),
+    #         Sphere(center=Vector3(0, 0, 1), radius=0.5, material=Dielectric(refraction_index=1.5))
+    #     ]
+    #     return list_of_hitables

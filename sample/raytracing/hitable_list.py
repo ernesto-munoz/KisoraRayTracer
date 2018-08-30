@@ -1,18 +1,19 @@
 from sample.raytracing.aabb import AABB
+from sample.raytracing.hit_record import HitRecord
 from sample.raytracing.hitable import Hitable
 
 class HitableList(Hitable):
 
     _list_of_hitables = None
 
-    def __init__(self, list_of_hitables=None):
+    def __init__(self, list_of_hitables):
         super().__init__()
         self._list_of_hitables = list_of_hitables
 
     def lenght(self):
         return len(self._list_of_hitables)
 
-    def hit(self, ray, t_min, t_max):
+    def hit(self, ray, t_min, t_max) -> (bool, HitRecord):
         final_hit_record = None
         hit_anything = False
         closest_so_far = t_max

@@ -6,6 +6,7 @@ from sample.raytracing.hitable import Hitable
 from sample.raytracing.ray import Ray
 from sample.raytracing.vector3 import Vector3
 from sample.raytracing.hit_record import HitRecord
+from sample.utils.math_utils import MathUtils
 
 
 class Sphere(Hitable):
@@ -39,9 +40,19 @@ class Sphere(Hitable):
     def radius(self, value):
         self.radius = value
 
+    def get_sphere_uv(self, p:Vector3) -> (float, float):
+        """Get the uv coordinates of a point in the sphere"""
+        d = Vector3.normalize(p - self._center)
+
+        phi = math.atan2(d.z(), d.x()) / (2 * math.pi)
+        u = phi + 0.5
+
+        v = 0.5 - (math.asin(d.y()) / math.pi)
+        return u, v
+
     def hit(self, ray:Ray, t_min:float, t_max:float) -> (bool, HitRecord):
         """Checks if the ray 'ray' hits with the sphere between t_min and t_max.
-        Returns true if there is a collison, flase otherwaise.
+        Returns true if there is a collision, false otherwise.
         Return the hitRecord information if the collision is true.
         """
         current_center = self.get_center(t=ray.time)
@@ -60,6 +71,7 @@ class Sphere(Hitable):
                 record.t = temp
                 record.hit_point = ray.point_at_parameter(record.t)
                 record.hit_point_normal = (record.hit_point - current_center) / self._radius
+                record.u, record.v = self.get_sphere_uv(p=record.hit_point)
                 record.material = self._material
                 return True, record
             temp = (-b + math.sqrt(b * b - a * c)) / a
@@ -68,6 +80,7 @@ class Sphere(Hitable):
                 record.t = temp
                 record.hit_point = ray.point_at_parameter(record.t)
                 record.hit_point_normal = (record.hit_point - current_center) / self._radius
+                record.u, record.v = self.get_sphere_uv(p=record.hit_point)
                 record.material = self._material
                 return True, record
 

@@ -90,7 +90,7 @@ class Vector3(object):
             self._z /= other
 
     def __neg__(self):
-        return Vector3(x=-self._x, y=self._y, z=self._z)
+        return Vector3(x=-self._x, y=-self._y, z=-self._z)
 
     def __str__(self):
         return f'({self._x} {self._y} {self._z})'

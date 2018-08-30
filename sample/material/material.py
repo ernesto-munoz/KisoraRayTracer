@@ -1,6 +1,9 @@
 import random
 
 from abc import ABC, abstractmethod
+
+# from sample.raytracing.hit_record import HitRecord
+from sample.raytracing.ray import Ray
 from sample.raytracing.vector3 import Vector3
 
 class Material(ABC):
@@ -9,19 +12,14 @@ class Material(ABC):
         super().__init__()
 
     @abstractmethod
-    def scatter(self, ray_incident, hit_record):
+    def scatter(self, ray_incident:Vector3, hit_record) -> (Ray, float):
         """Calculates the scatter and the attenuation in this material when a ray creates a hit_record on it.
-
-        :param ray_incident: Ray incident in to the material
-        :type ray_incident: Ray
-        :param hit_record: hit record of the hit
-        :type hit_record: HitRecord
-        :return attenuation: attenuation
-        :rtype attenuation: Vector3
-        :return scattered: scatter
-        :rtype scattered: Vector3
         """
         pass
+
+    @abstractmethod
+    def emitted(self, u:float, v:float, p:Vector3) -> Vector3:
+        return Vector3(0.0, 0.0, 0.0)
 
     def random_in_unit_sphere(self):
         p = Vector3(1.0, 1.0, 1.0)
