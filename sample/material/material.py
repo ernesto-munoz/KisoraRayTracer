@@ -18,7 +18,7 @@ class Material(ABC):
         pass
 
     @abstractmethod
-    def emitted(self, u:float, v:float, p:Vector3) -> Vector3:
+    def emitted(self, u: float, v: float, p: Vector3) -> Vector3:
         return Vector3(0.0, 0.0, 0.0)
 
     def random_in_unit_sphere(self):

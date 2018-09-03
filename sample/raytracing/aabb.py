@@ -32,10 +32,10 @@ class AABB(object):
         in_tmax = tmax
 
         for axis in ['x', 'y', 'z']:
-            invD = 1.0 / getattr(ray.direction, axis)()
-            t0 = (getattr(self._min, axis)() - getattr(ray.origin, axis)()) * invD
-            t1 = (getattr(self._max, axis)() - getattr(ray.origin, axis)()) * invD
-            if invD < 0.0:
+            inv_d = 1.0 / getattr(ray.direction, axis)()
+            t0 = (getattr(self._min, axis)() - getattr(ray.origin, axis)()) * inv_d
+            t1 = (getattr(self._max, axis)() - getattr(ray.origin, axis)()) * inv_d
+            if inv_d < 0.0:
                 t0, t1 = t1, t0
 
             in_tmin = t0 if t0 > in_tmin else in_tmin

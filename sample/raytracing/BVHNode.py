@@ -3,8 +3,6 @@ import logging
 
 from sample.raytracing.vector3 import Vector3
 
-logging.getLogger().setLevel(logging.INFO)
-
 from sample.raytracing.aabb import AABB
 from sample.raytracing.hit_record import HitRecord
 from sample.raytracing.hitable import Hitable
@@ -13,7 +11,7 @@ from sample.raytracing.ray import Ray
 
 class BVHNode(Hitable):
 
-    def __init__(self, list_of_hitables, n:int, time0:float, time1:float):
+    def __init__(self, list_of_hitables: list, n: int, time0: float, time1: float):
         super().__init__()
 
         # Choose a random Axis
@@ -52,7 +50,7 @@ class BVHNode(Hitable):
             else:
                 self._right.print_it()
 
-    def hit(self, ray:Ray, t_min:float, t_max:float) -> (bool, HitRecord):
+    def hit(self, ray:Ray, t_min: float, t_max: float) -> (bool, HitRecord):
         if self._box.hit(ray=ray, tmin=t_min, tmax=t_max):
 
             left_hit, left_hit_rec = self._left.hit(ray=ray, t_min=t_min, t_max=t_max)
@@ -70,5 +68,5 @@ class BVHNode(Hitable):
                 return False, None
         return False, None
 
-    def bounding_box(self, t0:float, t1:float) -> AABB:
+    def bounding_box(self, t0: float, t1: float) -> AABB:
         return self._box

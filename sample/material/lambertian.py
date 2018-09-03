@@ -8,7 +8,7 @@ from sample.raytracing.vector3 import Vector3
 
 class Lambertian(Material):
 
-    def __init__(self, albedo:Vector3, texture:Texture=None):
+    def __init__(self, albedo: Vector3=Vector3(1.0, 1.0, 1.0), texture: Texture=None):
         """ Lamberian Material
         :param albedo: albedo color of the material
         :type albedo: Vector3
@@ -16,7 +16,6 @@ class Lambertian(Material):
         super().__init__()
         self._albedo = albedo
         self._texture = ConstantTexture(Vector3(1.0, 1.0, 1.0)) if texture is None else texture
-
 
     def scatter(self, ray_incident:Ray, hit_record:HitRecord):
         target = hit_record.hit_point + hit_record.hit_point_normal + self.random_in_unit_sphere()

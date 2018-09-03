@@ -10,7 +10,7 @@ from sample.raytracing.hit_record import HitRecord
 
 class XYRect(Hitable):
 
-    def __init__(self, x0:float, x1:float, y0:float, y1:float, k:float, material:Material):
+    def __init__(self, x0: float, x1: float, y0: float, y1: float, k: float, material: Material):
         """Plane defined in the Z Axis"""
         super().__init__()
         self._x0 = x0
@@ -20,8 +20,7 @@ class XYRect(Hitable):
         self._k = k
         self._material = material
 
-
-    def hit(self, ray:Ray, t_min:float, t_max:float) -> (bool, HitRecord):
+    def hit(self, ray: Ray, t_min: float, t_max: float) -> (bool, HitRecord):
         """Checks if the ray 'ray' hits with the plane between t_min and t_max.
         Returns true if there is a collision, false otherwise.
         Return the hitRecord information if the collision is true.
@@ -53,9 +52,10 @@ class XYRect(Hitable):
     def __str__(self):
         return f'Plane: {self.bounding_box(0, 0).__str__()}'
 
+
 class XZRect(Hitable):
 
-    def __init__(self, x0:float, x1:float, z0:float, z1:float, k:float, material:Material):
+    def __init__(self, x0: float, x1: float, z0: float, z1: float, k: float, material: Material):
         """Plane defined in the Z Axis"""
         super().__init__()
         self._x0 = x0
@@ -65,8 +65,7 @@ class XZRect(Hitable):
         self._k = k
         self._material = material
 
-
-    def hit(self, ray:Ray, t_min:float, t_max:float) -> (bool, HitRecord):
+    def hit(self, ray: Ray, t_min: float, t_max: float) -> (bool, HitRecord):
         """Checks if the ray 'ray' hits with the plane between t_min and t_max.
         Returns true if there is a collision, false otherwise.
         Return the hitRecord information if the collision is true.
@@ -98,9 +97,10 @@ class XZRect(Hitable):
     def __str__(self):
         return f'Plane: {self.bounding_box(0, 0).__str__()}'
 
+
 class YZRect(Hitable):
 
-    def __init__(self, y0:float, y1:float, z0:float, z1:float, k:float, material:Material):
+    def __init__(self, y0: float, y1: float, z0: float, z1: float, k: float, material: Material):
         """Plane defined in the Z Axis"""
         super().__init__()
         self._y0 = z0
@@ -110,8 +110,7 @@ class YZRect(Hitable):
         self._k = k
         self._material = material
 
-
-    def hit(self, ray:Ray, t_min:float, t_max:float) -> (bool, HitRecord):
+    def hit(self, ray: Ray, t_min: float, t_max: float) -> (bool, HitRecord):
         """Checks if the ray 'ray' hits with the plane between t_min and t_max.
         Returns true if there is a collision, false otherwise.
         Return the hitRecord information if the collision is true.

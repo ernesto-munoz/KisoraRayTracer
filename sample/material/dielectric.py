@@ -53,3 +53,6 @@ class Dielectric(Material):
 
         x = 1.0 - cosX
         return r0 + (1.0 - r0) * math.pow(x, 5)
+
+    def emitted(self, u: float, v: float, p: Vector3) -> Vector3:
+        return Vector3(0.0, 0.0, 0.0)

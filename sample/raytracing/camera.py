@@ -4,6 +4,7 @@ import random
 from sample.raytracing.vector3 import Vector3
 from sample.raytracing.ray import Ray
 
+
 class Camera(object):
 
     def __init__(self, lookfrom:'Vector3', lookat:'Vector3', vectorup:'Vector3', vfov:'float', aspect:'float', aperture:'float', focus_dist:'float', t0:float, t1:float):
@@ -24,8 +25,6 @@ class Camera(object):
         self._lower_left_corner = self._camera_origin - half_width * focus_dist * u - half_height * focus_dist * v - focus_dist*w
         self._horizontal = 2 * half_width * focus_dist * u
         self._vertical = 2 * half_height * focus_dist * v
-
-
 
     def get_ray(self, u, v):
         rd = self._lens_radius * self.random_in_unit_disk()

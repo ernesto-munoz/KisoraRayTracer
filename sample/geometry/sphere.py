@@ -11,7 +11,7 @@ from sample.utils.math_utils import MathUtils
 
 class Sphere(Hitable):
 
-    def __init__(self, center:Vector3, radius:float, material:Material, center_destiny:Vector3=None, time0:float=0.0, time1:float=1.0):
+    def __init__(self, center: Vector3, radius: float, material: Material, center_destiny: Vector3 = None, time0: float = 0.0, time1: float = 1.0):
         """Sphere with center, radius and a material
 
         :param center: center of the sphere

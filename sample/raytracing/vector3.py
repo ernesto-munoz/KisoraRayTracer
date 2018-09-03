@@ -6,10 +6,8 @@ class Vector3(object):
     _y = 0.0
     _z = 0.0
 
-    def __init__(self, x=0.0, y=0.0, z=0.0):
-        self._x = float(x)
-        self._y = float(y)
-        self._z = float(z)
+    def __init__(self, x:float=0.0, y:float=0.0, z:float=0.0):
+        self._x, self._y, self._z = x, y, z
 
     def x(self):
         return self._x
@@ -30,31 +28,31 @@ class Vector3(object):
         return self._z
 
     def __add__(self, other):
-        if type(other) == Vector3:
+        if isinstance(other, Vector3):
             return Vector3(x=self._x + other.x(), y=self._y + other.y(), z=self._z + other.z())
         else:
             return Vector3(x=self._x + other, y=self._y + other, z=self._z + other)
 
     def __sub__(self, other):
-        if type(other) == Vector3:
+        if isinstance(other, Vector3):
             return Vector3(x=self._x - other.x(), y=self._y - other.y(), z=self._z - other.z())
         else:
             return Vector3(x=self._x - other, y=self._y - other, z=self._z - other)
 
     def __mul__(self, other):
-        if type(other) == Vector3:
+        if isinstance(other, Vector3):
             return Vector3(x=self._x * other.x(), y=self._y * other.y(), z=self._z * other.z())
         else:
             return Vector3(x=self._x * other, y=self._y * other, z=self._z * other)
 
     def __rmul__(self, other):
-        if type(other) == Vector3:
+        if isinstance(other, Vector3):
             return Vector3(x=self._x * other.x(), y=self._y * other.y(), z=self._z * other.z())
         else:
             return Vector3(x=self._x * other, y=self._y * other, z=self._z * other)
 
     def __truediv__(self, other):
-        if type(other) == Vector3:
+        if isinstance(other, Vector3):
             return Vector3(x=self._x / other.x(), y=self._y / other.y(), z=self._z / other.z())
         else:
             return Vector3(x=self._x / other, y=self._y / other, z=self._z / other)
@@ -63,14 +61,16 @@ class Vector3(object):
         self._x += other.x()
         self._y += other.y()
         self._z += other.z()
+        return self
 
     def __isub__(self, other):
         self._x -= other.x()
         self._y -= other.y()
         self._z -= other.z()
+        return self
 
     def __imul__(self, other):
-        if type(other) == Vector3:
+        if isinstance(other, Vector3):
             self._x *= other.x()
             self._y *= other.y()
             self._z *= other.z()
@@ -78,9 +78,10 @@ class Vector3(object):
             self._x *= other
             self._y *= other
             self._z *= other
+        return self
 
     def __itruediv__(self, other):
-        if type(other) == Vector3:
+        if isinstance(other, Vector3):
             self._x /= other.x()
             self._y /= other.y()
             self._z /= other.z()
@@ -88,6 +89,7 @@ class Vector3(object):
             self._x /= other
             self._y /= other
             self._z /= other
+        return self
 
     def __neg__(self):
         return Vector3(x=-self._x, y=-self._y, z=-self._z)
@@ -130,7 +132,7 @@ class Vector3(object):
         return v - 2 * Vector3.dot(v, n) * n
 
     @staticmethod
-    def refract(incident:'Vector3', normal:'Vector3', n1: 'float', n2: 'float'):
+    def refract(incident: 'Vector3', normal: 'Vector3', n1: 'float', n2: 'float'):
         """Calculate the refracted vector from the vector v in the surface with normal n
         """
 

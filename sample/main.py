@@ -5,16 +5,17 @@ from sample.utils.test_scenes import TestScenes
 
 if __name__ == '__main__':
     r = KisoraRayTracer()
-    r.width, r.height = KisoraRayTracer.P144
-    r.num_samples = 5
+    r.width, r.height = KisoraRayTracer.RES_qHD
+    r.num_samples = 30
+    r.max_workers_pool_process = 4
+    r.chunk_width, r.chunk_height = 200, 200
 
-    lookfrom = Vector3(278, 278, -800)
-    lookat = Vector3(278, 278, 0.0)
-    r.camera = Camera(lookfrom=lookfrom, lookat=lookat, vectorup=Vector3(0.0, 1.0, 0.0),
-                 vfov=40.0, aspect=float(r.width) / float(r.height), aperture=0.0,
-                 focus_dist=(lookfrom - lookat).length(),
-                 t0=0.0, t1=1.0)
+    list_of_hitables, camera = TestScenes.one_sphere_world()
+    r.camera = camera
 
-    r.set_objects_in_scene(list_of_hitables=TestScenes.cornell_box())
+    r.set_objects_in_scene(list_of_hitables=list_of_hitables)
     r.render()
-    r.save_image('image00.ppm')
+    r.save_image('image_world', 'png')
+    # r.save_image('image00', 'jpeg')
+    # r.save_image('image00', 'ppm')
+    r.show_image()
