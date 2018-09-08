@@ -1,5 +1,5 @@
 from sample.raytracing.aabb import AABB
-from sample.raytracing.hit_record import HitRecord
+from sample.raytracing.records import HitRecord
 from sample.raytracing.hitable import Hitable
 
 class HitableList(Hitable):

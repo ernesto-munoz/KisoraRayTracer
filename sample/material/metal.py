@@ -1,5 +1,5 @@
 from sample.material.material import Material
-from sample.raytracing.hit_record import HitRecord
+from sample.raytracing.records import HitRecord
 from sample.raytracing.vector3 import Vector3
 from sample.raytracing.ray import Ray
 

@@ -10,7 +10,7 @@ from sample.raytracing.aabb import AABB
 from sample.raytracing.hitable import Hitable
 from sample.raytracing.ray import Ray
 from sample.raytracing.vector3 import Vector3
-from sample.raytracing.hit_record import HitRecord
+from sample.raytracing.records import HitRecord
 
 
 class ConstantVolume(Hitable):

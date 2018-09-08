@@ -1,12 +1,13 @@
 import math
+import random
 
 from sample.material.material import Material
 from sample.raytracing.aabb import AABB
 from sample.raytracing.hitable import Hitable
 from sample.raytracing.ray import Ray
 from sample.raytracing.vector3 import Vector3
-from sample.raytracing.hit_record import HitRecord
-from sample.utils.math_utils import MathUtils
+from sample.raytracing.records import HitRecord
+from sample.mc.onb import ONB
 
 
 class Sphere(Hitable):
@@ -29,7 +30,7 @@ class Sphere(Hitable):
         self._time0 = time0
         self._time1 = time1
 
-    def get_center(self, t:float):
+    def get_center(self, t: float):
         return self._center + ((t - self._time0) / (self._time1 - self._time0)) * (self._center_destiny - self._center)
 
     @property
@@ -38,7 +39,7 @@ class Sphere(Hitable):
 
     @radius.setter
     def radius(self, value):
-        self.radius = value
+        self._radius = value
 
     def get_sphere_uv(self, p:Vector3) -> (float, float):
         """Get the uv coordinates of a point in the sphere"""
@@ -92,10 +93,27 @@ class Sphere(Hitable):
                    )
         return box
 
-    def __str__(self):
-        return f'Sphere Radius:{self._radius} Center0:{self.get_center(0)} Center1:{self.get_center(1)}'
-
     def bounding_box(self, t0: float, t1: float) -> AABB:
         box0 = self.bounding_box_on_time(time=t0)
         box1 = self.bounding_box_on_time(time=t1)
         return AABB.surrounding_box(box0=box0, box1=box1)
+
+    def random(self, o: Vector3):
+        direction = self._center - o
+        distance_squared = direction.squared_length()
+        uvw = ONB()
+        uvw.build_from_w(n=direction)
+        return uvw.local(self.random_to_sphere(radius=self._radius, distance_squared=distance_squared))
+
+    def random_to_sphere(self, radius: float, distance_squared: float) -> Vector3:
+        r1 = random.random()
+        r2 = random.random()
+        z = 1 + r2 * (math.sqrt(1 - self._radius * self._radius/distance_squared) - 1)
+        phi = 2 * math.pi * r1
+        x = math.cos(phi) * math.sqrt(1 - z * z)
+        y = math.sin(phi) * math.sqrt(1 - z * z)
+
+        return Vector3(x, y, z)
+
+    def __str__(self):
+        return f'Sphere Radius:{self._radius} Center0:{self.get_center(0)} Center1:{self.get_center(1)}'

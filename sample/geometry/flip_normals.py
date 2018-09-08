@@ -1,12 +1,13 @@
 from sample.raytracing.aabb import AABB
-from sample.raytracing.hit_record import HitRecord
+from sample.raytracing.records import HitRecord
 from sample.raytracing.hitable import Hitable
 from sample.raytracing.ray import Ray
 
 
 class FlipNormals(Hitable):
+    """Wraps a hitable element flipping it's normal vector."""
 
-    def __init__(self, hitable:Hitable):
+    def __init__(self, hitable: Hitable):
         super().__init__()
         self._hitable = hitable
 

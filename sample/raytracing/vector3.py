@@ -2,11 +2,11 @@ import math
 
 
 class Vector3(object):
-    _x = 0.0
-    _y = 0.0
-    _z = 0.0
+    _x: float = 0.0
+    _y: float = 0.0
+    _z: float = 0.0
 
-    def __init__(self, x:float=0.0, y:float=0.0, z:float=0.0):
+    def __init__(self, x: float = 0.0, y: float = 0.0, z: float = 0.0):
         self._x, self._y, self._z = x, y, z
 
     def x(self):

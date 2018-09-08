@@ -1,11 +1,12 @@
 import math
+import random
 
 from sample.material.material import Material
 from sample.raytracing.aabb import AABB
 from sample.raytracing.hitable import Hitable
 from sample.raytracing.ray import Ray
 from sample.raytracing.vector3 import Vector3
-from sample.raytracing.hit_record import HitRecord
+from sample.raytracing.records import HitRecord
 
 
 class XYRect(Hitable):
@@ -25,6 +26,9 @@ class XYRect(Hitable):
         Returns true if there is a collision, false otherwise.
         Return the hitRecord information if the collision is true.
         """
+        if ray.direction.z() == 0.0:
+            return False, None
+
         t = (self._k - ray.origin.z()) / ray.direction.z()
         if t < t_min or t > t_max:
             return False, None
@@ -70,6 +74,9 @@ class XZRect(Hitable):
         Returns true if there is a collision, false otherwise.
         Return the hitRecord information if the collision is true.
         """
+        if ray.direction.y() == 0.0:
+            return False, None
+
         t = (self._k - ray.origin.y()) / ray.direction.y()
         if t < t_min or t > t_max:
             return False, None
@@ -103,7 +110,7 @@ class YZRect(Hitable):
     def __init__(self, y0: float, y1: float, z0: float, z1: float, k: float, material: Material):
         """Plane defined in the Z Axis"""
         super().__init__()
-        self._y0 = z0
+        self._y0 = y0
         self._y1 = y1
         self._z0 = z0
         self._z1 = z1
@@ -115,6 +122,9 @@ class YZRect(Hitable):
         Returns true if there is a collision, false otherwise.
         Return the hitRecord information if the collision is true.
         """
+        if ray.direction.x() == 0.0:
+            return False, None
+
         t = (self._k - ray.origin.x()) / ray.direction.x()
         if t < t_min or t > t_max:
             return False, None
